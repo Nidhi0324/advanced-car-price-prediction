@@ -60,7 +60,7 @@ Required model files:
 - damage_detection_yolo.h5 – YOLO-based damage detection model  
 
 Download trained models from Google Drive:
-PASTE_YOUR_GOOGLE_DRIVE_LINK_HERE
+https://drive.google.com/drive/folders/1uVa9jD_-Ky9Rtu-B0DwdCHp9zh6dkXP4?usp=sharing
 
 After downloading, place both model files inside the models/ directory.
 
@@ -77,6 +77,7 @@ After downloading, place both model files inside the models/ directory.
 
 Clone the repository:
 git clone https://github.com/Nidhi0324/advanced-car-price-prediction
+
 Install dependencies:
 pip install -r requirements.txt
 
