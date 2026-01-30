@@ -76,9 +76,7 @@ After downloading, place both model files inside the models/ directory.
 ## How to Run the Project Locally
 
 Clone the repository:
-git clone https://github.com/your-username/advanced-car-prdiction-model.git
-cd advanced-car-prdiction-model
-
+git clone https://github.com/Nidhi0324/advanced-car-price-prediction
 Install dependencies:
 pip install -r requirements.txt
 
