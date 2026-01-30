@@ -25,32 +25,6 @@ Flask, HTML, CSS, JavaScript
 Tools:
 Jupyter Notebook, GitHub, Google Drive (for hosting large model files)
 
-## Project Structure
-
-advanced-car-prdiction-model/
-├── app/
-│   ├── backend/
-│   │   ├── app.py
-│   │   ├── model_utils.py
-│   │   └── yolo_utils.py
-│   └── frontend/
-│       ├── index.html
-│       ├── upload.html
-│       ├── style.css
-│       ├── main.js
-│       ├── favicon.ico
-│       └── search_icon.png
-├── models/
-│   ├── preprocessing_pipeline.pkl
-│   └── README.md
-├── notebooks/
-│   └── 01_car_price_prediction.ipynb
-├── docs/
-│   ├── project_report.pdf
-│   ├── project_poster.pdf
-│   └── project_presentation.pptx
-└── README.md
-
 ## Model Files
 
 Due to GitHub file size limitations, trained model files are not included directly in this repository.
