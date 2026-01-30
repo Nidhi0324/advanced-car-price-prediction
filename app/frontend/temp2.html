@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temp2</title>
+    <style>/* Dropdown Button */
+
+        .dropbtn {
+          background-color: #04AA6D;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+        
+        /* Dropdown button on hover & focus */
+        .dropbtn:hover, .dropbtn:focus {
+          background-color: #3e8e41;
+        }
+        
+        .search-wrapper {
+            position: relative; /* Allows positioning of the icon within */
+            cursor: pointer;
+        }
+
+        .search-wrapper input {
+            padding-left: 40px; /* Adjust padding to fit icon size */
+        }
+      
+        .search-icon {
+            position: absolute;
+            left: 12px; /* Adjust horizontal position */
+            top: 14px;  /* Adjust vertical position */
+            width: 18px; /* Set width of the icon */
+            height: 18px; /* Set height of the icon */
+            background-image: url('/static/searchicon.png');
+            background-size: 18px 18px; /* Ensure icon size matches element */
+            background-repeat: no-repeat;
+        }
+
+        /* The search field */
+        #manufacturer {
+          box-sizing: border-box;
+          /* background-image: url('/static/searchicon.png');
+          background-position: 14px 12px;
+          background-repeat: no-repeat; */
+          /* background-color: magenta; */
+          font-size: 16px;
+          padding: 14px 20px 12px 45px;
+          border: none;
+          border-bottom: 1px solid #ddd;
+        }
+        
+        /* The search field when it gets focus/clicked on */
+        #manufacturer:focus {outline: 3px solid #ddd;}
+        
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+        
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f6f6f6;
+            min-width: 260px;
+            border: 1px solid #ddd;
+            z-index: 1;
+            overflow-y: auto;  /* Enable scrolling */
+            max-height: 250px; /* Adjust the height as needed */
+        }
+        
+        /* Links inside the dropdown */
+        .dropdown-content .dropdown-item {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+        
+        /* Change color of dropdown links on hover */
+        .dropdown-content .dropdown-item:hover {background-color: #e6e6e6}
+        
+        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+        .show {display:block;}
+    </style>
+</head>
+<body>
+    <div class="dropdown">
+        <div class="search-wrapper" id="search-wrapper" onclick="myFunction()" onkeyup="filterFunction()">
+            <span class="search-icon" ></span>
+            <input autocomplete="off" type="text" placeholder="Search.." id="manufacturer" >
+        </div>
+
+        <div id="myDropdown" class="dropdown-content">
+            <div class="dropdown-item">About</div>
+            <div class="dropdown-item">Base</div>
+            <div class="dropdown-item">Blog</div>
+            <div class="dropdown-item">Contact</div>
+            <div class="dropdown-item">Custom</div>
+            <div class="dropdown-item">Support</div>
+            <div class="dropdown-item">Tools</div>
+            <!-- <a href="#about">About</a>
+          <a href="#base">Base</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+          <a href="#custom">Custom</a>
+          <a href="#support">Support</a>
+          <a href="#tools">Tools</a>-->
+          <a href="temp.html" target="_blank">Latest links!!!</a> 
+        </div>
+    </div>
+
+    <script>
+        /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+        function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        document.addEventListener('click', function (event) {
+        const element = document.getElementById('search-wrapper'); // Replace with your element's ID
+        const go = document.getElementById('myDropdown');
+        const classToAdd = 'show'; // Replace with the class you want to remove
+        console.log("0")
+
+        if (!element.contains(event.target) && !go.contains(event.target)) {
+            go.classList.remove(classToAdd);
+            console.log("1")
+        }
+        });
+
+        function filterFunction() {
+        //   var input, filter, ul, li, a, i;
+        console.log(2)
+        input = document.getElementById("manufacturer");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("div");
+        for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+            } else {
+            a[i].style.display = "none";
+            }
+        }
+        }
+
+        // Inside your existing JavaScript code
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function() {
+                document.getElementById('manufacturer').value = this.textContent;
+                myFunction(); // Call the function to close the dropdown
+            });
+        });
+
+      </script>
+</body>
+</html>

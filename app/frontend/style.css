@@ -1,0 +1,487 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Clean, modern font */
+    background-color: #bcbcbc;
+    /* overflow: hidden;  */
+
+  }
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* || NavBar */
+  .site-header {
+    background-color: #daff45;  /* Example background color */
+    padding: 5vh 0;
+    text-align: center;
+    max-width: 100%; /* Ensure the width can't exceed 100% */
+    width: 70%; /* Default width for desktops/PCs */
+    margin: 0 auto;
+    /* color: #4CAF50; */
+}
+  .site-header div{
+    font-size: 5vh;
+  }
+  .rest{
+    font-weight: bold;
+  }
+.advanced {
+    font-size: 0.5em;    /* Smaller font size */
+    font-style: italic;  
+    vertical-align: top;  /* Adjust vertical alignment */
+}
+
+
+/* || Feature form */
+  .form-container {
+    width: 500px; /* Adjust width as needed */
+    margin: 0 auto;  /* Centers the form within the div */
+    padding: 30px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Initial box-shadow */
+    background: linear-gradient(to right, #000000, #008CBA); /* Adjust colors */
+    color: white; 
+  }
+
+  .input-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Adds depth */
+  }
+
+  input[type="text"], 
+  input[type="number"],
+  select {  /* Add select if you use dropdowns */
+    width: 100%; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px; 
+    box-sizing: border-box;  /* Add this line */
+  }
+
+  input[type="text"]:focus, 
+  input[type="number"]:focus,
+  select:focus { 
+    border-color: #4CAF50; /* Example focus color */
+    box-shadow: 0px 0px 5px rgba(76, 175, 80, 0.5); /* Focus shadow */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+
+  button[type="submit"] {
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .feature-form-outer {
+    background: linear-gradient(to left, #000000, #008CBA); /* Adjust colors */
+    width: 70%; /* Default width for desktops/PCs */
+    max-width: 100%; /* Ensure the width can't exceed 100% */
+    min-height: 100vh; /* Minimum height: 100% of viewport*/
+    margin: 0 auto; /* Center the div horizontally */
+    /* display: flex;  Enable flexbox for internal content centering */
+    align-items: center; /* Center content vertically within the div */
+    justify-content: center; /* Center content horizontally within the div */
+    border-bottom: 2px black;
+  }
+  /* ... */
+  .search-wrapper {
+      position: relative; /* Allows positioning of the icon within */
+      cursor: pointer;
+  }
+
+  .search-icon {
+      position: absolute;
+      left: 12px; /* Adjust horizontal position */
+      top: 14px;  /* Adjust vertical position */
+      width: 18px; /* Set width of the icon */
+      height: 18px; /* Set height of the icon */
+      background-image: url('/static/searchicon.png');
+      background-size: 18px 18px; /* Ensure icon size matches element */
+      background-repeat: no-repeat;
+  }
+
+  /* The search field */
+  #manufacturer {
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    /* border-radius: 10px; */
+  }
+  
+  /* The search field when it gets focus/clicked on */
+  #manufacturer:focus {outline: 3px solid #858585;}
+  
+  /* The container <div> - needed to position the dropdown content */
+  /* .dropdown {
+    position: relative;
+  } */
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #eaeaea;
+      min-width: 260px;
+      border: 1px solid #ddd;
+      z-index: 1;
+      overflow-y: auto;  /* Enable scrolling */
+      max-height: 220px; /* Adjust the height as needed */
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content .dropdown-item {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content .dropdown-item:hover {background-color: #d9d9d9}
+  
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {display:block !important ;}
+  .hide {display: none !important ;} 
+  .show-flex {display: flex !important ;}
+  /* || Flip animations */
+  /* ...Flip and show modal */  
+  @keyframes flipOut {
+    0% { transform: perspective(1000px); } 
+    100% { transform: perspective(1000px) rotateY(90deg); opacity: 0; }
+  }
+  @keyframes flipIn {
+    0% { transform: perspective(1000px) rotateY(-90deg); opacity: 0; }
+    100% { transform: perspective(1000px); opacity: 1; }
+  }
+  .disappearing-form {
+    animation: flipOut 0.5s ease-in-out forwards; /* Adjust animation duration */
+  }
+  
+  .modal.show { 
+    animation: flipIn 0.5s ease-in-out forwards;
+  }
+  
+  /* ...Flip and hide modal */
+  .disappearing-modal {
+    animation: flipOut 0.5s ease-in-out forwards; 
+  }
+
+  .form-container.show {  /* Style for the reappearing form */
+    animation: flipIn 0.5s ease-in-out forwards;
+  }
+
+
+  /* || Modals */
+  /* ... Predictor Result Modal */
+  .modal {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    /* z-index: 2; */
+    margin: 0 auto;
+    position: relative; 
+    color: white;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.7);
+    padding: 30px;
+    border-radius: 5px;
+    width: 500px;
+  }
+  
+  .modal-content {
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #pred-head{
+    color: #00ff08;
+  }
+  #damageQuestion {
+    margin-top: 30px;
+    align-self: flex-start;
+  }
+  #btnYes, #btnNo {
+    width: 5em;
+    cursor: pointer;
+  } 
+  #btnYes {
+    margin-left: 2em;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 40px;
+    cursor: pointer;
+  }
+  .close-btn:hover { animation: larger 0.5s ease-in forwards;}
+  @keyframes larger {
+    0% { font-size: 40px; }
+    100% { font-size: 50px;}
+  }
+
+  /* ... */
+
+  /* || Image form */
+  .image-form-outer {
+    background-color: rgb(255, 255, 255);
+    width: 70%; /* Default width for desktops/PCs */
+    max-width: 100%; /* Ensure the width can't exceed 100% */
+    min-height: 100vh; /* Minimum height: 100% of viewport*/
+    margin: 0 auto; /* Center the div horizontally */
+    display: flex;  /* Enable flexbox for internal content centering */
+    align-items: center; /* Center content vertically within the div */
+    justify-content: center; /* Center content horizontally within the div */
+  }
+  @media (max-width: 768px) { /* Adjust this breakpoint as needed */
+    .main-center-div {
+      width: 100%; /* Full width on mobile devices */
+    }
+  }
+
+  .file-upload-form {
+    text-align: center; /* Center the form elements */
+  }
+  
+  .file-upload-form label {
+    display: block; /* Put the label on its own line */
+    margin-bottom: 10px; 
+    font-size: large;
+  }
+  
+  .file-upload-form input[type="file"] {
+    border: 1px solid #ccc; /* Basic input style */
+    padding: 8px;
+
+  }
+  
+  .file-upload-form button {
+    background-color: #4CAF50; /* Example button color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+
+/* || Image modal */
+.image-modal {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed; 
+  z-index: 3; /* Higher than the loading screen, adjust as needed */
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  background-color: rgba(255, 255, 255, 0.9); /* White with a bit of transparency */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  padding: 15px; 
+  width: 90vw; 
+  height: 90vh; /* 90% of viewport height */
+}
+
+#proceed {
+  /* background-color: #007bff; */
+  position: absolute;
+  top: 10px;
+  right: 90px;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 3px solid black;
+  border-radius: 30px;
+}
+
+#proceed:hover {
+  box-shadow: 0px 0px 15px #8400ff;
+  /* box-shadow:  rgba(0, 0, 0, 0.4); */
+
+}
+
+#image-modal-response {
+  font-size: 4vh;
+}
+
+/* || Carousel */
+.mySlides {display: none}
+.mySlides img  {
+  /* vertical-align: middle; */
+  /* object-fit: cover; */
+  width: 100%; 
+  height: 100%; 
+  object-fit: contain; 
+}
+
+/* Slideshow container */
+.slideshow-container {
+  position: relative;
+  border: 10px black double;
+  width: 60%;
+  height: 80%;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
+  overflow-x: hidden; /* Enable scrolling if images are large */
+  overflow-y: hidden;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: rgb(0, 0, 0);
+  background-color: #adadad;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* || final modal */
+.final-modal {
+  /* flex-direction: column; */
+  position: fixed; 
+  z-index: 5; /* Higher than the loading screen, adjust as needed */
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.7);
+  padding: 30px;
+  border-radius: 10px;
+  width: 500px;
+}
+
+.final-modal-content {
+  text-align: center; 
+  display: flex;
+  flex-direction: column;
+}
+
+#final-pred-head{
+  color: #00ff08;
+}
+#final-info {
+  margin-top: 30px;
+  align-self: flex-start;
+}
+
+
+  /* ||   Loading screen */
+  #loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(27, 27, 27, 0.7); /* Black film with transparency */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Ensure it's on top of everything */
+  
+  }
+  
+  .loading-text-bg {
+    width: 100%;
+    height: 20%;
+    opacity: 0.8;
+    display: flex;
+  }
+
+  #loading-text {
+    background-color: rgba(0, 0, 0, 1);
+    font-size: 72px; /* Adjust font size as needed */
+    text-shadow: 3px 3px 5px rgb(255, 0, 0); /* Optional subtle shadow */
+    height: 100%;
+    margin: 0 auto;
+    color: white;
+    display: flex;
+    align-items: center;
+    vertical-align:middle;
+    padding: 0 30px;
+  }
+  
+  

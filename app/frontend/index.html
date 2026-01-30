@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home!?</title>
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico">
+    <link rel="stylesheet" href="/static/home.css">
+  </head>
+  <body>
+    <nav class="site-header">
+      <div>
+          <span class="advanced">Advanced</span>
+          <span class="rest">
+            Car Price Predictor 
+          </span>
+      </div>
+    </nav>
+  
+    
+    <div class="feature-form-outer show-flex" id="feature-form-outer">
+      <div class="form-container" id="form-container"> 
+        <form id="car-info-form" method="post">
+          
+          <div class="input-group">
+            <label for="kilometers-driven">Kilometers Driven:</label>
+            <input type="number" id="kilometers-driven" name="kilometers-driven" value="10000" required>
+          </div>
+      
+          <div class="input-group">
+            <label for="mileage">Mileage:</label>
+            <input type="number" id="mileage" name="mileage" value="20" step="0.01" required> 
+          </div>
+      
+          <div class="input-group">
+            <label for="build-type">Build Type:</label>
+            <select id="build-type" name="build-type"> 
+              <!-- <option value="">Select Build Type</option> -->
+              <option value="Sedan">Sedan</option>
+              <option value="SUV">SUV</option>
+              <option value="Hatchback">Hatchback</option> 
+              <option value="MUV">MUV</option> 
+              <option value="Minivans">Minivans</option> 
+              <option value="Luxury Vehicles">Luxury Vehicles</option> 
+              <option value="Other">Other</option> 
+              </select>
+          </div>
+      
+          <div class="input-group dropdown">
+            <label for="manufacturer">Manufacturer:</label>
+            <div class="search-wrapper" id="search-wrapper" onclick="myFunction()" onkeyup="filterFunction()">
+                <span class="search-icon" ></span>
+                <input autocomplete="off" type="text" placeholder="Search.." id="manufacturer" name="manufacturer" value="Other" required>
+            </div>
+    
+            <div id="myDropdown" class="dropdown-content">
+                <div class="dropdown-item">Maruti</div>
+                <div class="dropdown-item">Hyundai</div>
+                <div class="dropdown-item">Honda</div>
+                <div class="dropdown-item">Mahindra</div>
+                <div class="dropdown-item">Tata</div>
+                <div class="dropdown-item">Renault</div>
+                <div class="dropdown-item">Ford</div>
+                <div class="dropdown-item">Volkswagen</div>
+                <div class="dropdown-item">Skoda</div>
+                <div class="dropdown-item">Toyota</div>
+                <div class="dropdown-item">Chevrolet</div>
+                <div class="dropdown-item">Kia</div>
+                <div class="dropdown-item">Nissan</div>
+                <div class="dropdown-item">Audi</div>
+                <div class="dropdown-item">Mercedes-Benz</div>
+                <div class="dropdown-item">BMW</div>
+                <div class="dropdown-item">MG</div>
+                <div class="dropdown-item">Datsun</div>
+                <div class="dropdown-item">Jeep</div>
+                <div class="dropdown-item">Fiat</div>
+                <div class="dropdown-item">Volvo</div>
+                <div class="dropdown-item">Mitsubishi</div>
+                <div class="dropdown-item">Jaguar</div>
+                <div class="dropdown-item">Other</div>                
+            </div>
+        </div>
+      
+          <div class="input-group">
+            <label for="transmission">Transmission:</label>
+            <select id="transmission" name="transmission">
+              <option value="Manual">Manual</option>
+              <option value="Automatic">Automatic</option>
+              </select>
+          </div>
+      
+          <div class="input-group">
+            <label for="fuel-type">Fuel Type:</label>
+            <select id="fuel-type" name="fuel-type">
+              <!-- <option value="" disabled selected hidden>Select Fuel Type</option> -->
+              <option value="Petrol">Petrol</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Electric">Electric</option>
+              <option value="CNG">CNG</option>
+              <option value="LPG">LPG</option>
+              </select>
+          </div>
+      
+          <button type="submit" onclick="showLoadingScreen()">Submit</button>
+        </form>
+      </div>
+      <!-- ------------------------------------------------------------------------------------------------------------------------ -->
+      <div id="predictionModal" class="modal hide"> 
+        <div class="modal-content">
+          <span class="close-btn" onclick="flipAndHideModal()">&times;</span> 
+          <h2 id="pred-head">Prediction Result</h2>
+          <p id="predictionResult">Predicted price will be displayed here.</p> 
+          <div id="damageQuestion">Do you identify any damages on your car?
+            <button id="btnYes" onclick="handleDamageResponse(true)">Yes</button>
+            <button id="btnNo" onclick="handleDamageResponse(false)">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- ------------------------------------------------------------------------------------------------------------------------ -->
+      <div class="image-form-outer " id="image-form-outer">
+        <form class="file-upload-form" id="file-upload-form" method="post" enctype="multipart/form-data" action="/">
+            <label for="file-input">Choose a file:</label>
+            <input type="file" id="file-input" name="file-input" multiple>
+            <button type="submit" onlick="showLoadingScreen()">Upload</button>
+        </form>
+    </div>
+
+
+    <div id="image-modal" class="image-modal hide"> 
+      <!-- <div class="image-modal-content"> -->
+        <p id="image-modal-response">• <u><i>Damage Detection</i> model has returned the following result.</u></p>
+        <!-- <br> -->
+        <span class="close-btn" onclick="closeImageModal()">&times;</span> 
+        <span  id="proceed" onclick="proceed()">➟ | Proceed</span>
+        <br>
+        <div class="slideshow-container">
+          <a class="prev" onclick="plusSlides(-1)">❮</a>
+          <a class="next" onclick="plusSlides(1)">❯</a>
+        </div> 
+      <!-- </div> -->
+
+      <br>
+
+      <div class="dots-container" style="text-align:center;">
+        <!-- <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span>  -->
+      </div>
+    </div>
+    
+
+    <div id="final-modal" class="final-modal hide"> 
+      <div class="final-modal-content">
+        <span class="close-btn" onclick="closeFinalModal()">&times;</span> 
+        <h2 id="final-pred-head">The final value of your car-</h2>
+        <p id="final-result">Final price will be displayed here.</p> 
+        <div id="final-info">ⓘ The above price is calculated after taking into consideration, all the damages that were detected on your car.</div>
+      </div>
+    </div>
+
+
+    <div id="loading-screen">
+      <div class="loading-text-bg">
+        <span id="loading-text">Loading... ⧖</span>
+      </div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+  <script src="/static/home.js"></script>
+</html>
